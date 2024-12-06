@@ -1,4 +1,4 @@
-define input parameter oList as getInput no-undo.
+define input parameter oList as 01.getInput no-undo.
 
 var handle hq1, hq2, hb1, hb2.
 var int idiff.
