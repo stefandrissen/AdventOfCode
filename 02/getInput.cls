@@ -1,4 +1,4 @@
-class getInput:
+class 02.getInput:
 
 	define temp-table tt
 		field id1 as int

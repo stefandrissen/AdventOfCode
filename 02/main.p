@@ -1,11 +1,11 @@
 var datetime [4] dt.
 var int ix.
 
-var getInput o.
+var 02.getInput o.
 
 dt[1] = now.
 
-o = new getInput( 'list.txt' ). dt[2] = now.
+o = new 02.getInput( 'list.txt' ). dt[2] = now.
 
 run one.p (o). dt[3] = now.
 run two.p (o). dt[4] = now.
