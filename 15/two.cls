@@ -1,6 +1,6 @@
 class 15.two:
 
-   var int iwidth, iheight, ixrobot, iyrobot.
+   var int ixrobot, iyrobot.
 
    define temp-table ttmap no-undo
       field x as int
@@ -43,10 +43,7 @@ class 15.two:
          import unformatted cline.
 
          if cline = '' then
-            assign
-               iheight = iy - 1
-               lmoves = true
-               .
+            lmoves = true.
 
          if lmoves then
             cmoves = cmoves + cline.
@@ -96,16 +93,13 @@ class 15.two:
 
    method void moveRobot ( cmoves as char ):
 
-      define buffer bu for ttmap.
-
-      var int x, y, ix, imoves, imove.
+      var int ix, imoves, imove.
 
       var char cmove = '<^>v'.
       var int [4] dx = [ -1,  0, 1, 0 ].
       var int [4] dy = [  0, -1, 0, 1 ].
 
       imoves = length( cmoves ).
-      // imoves = 11.
       do ix = 1 to imoves:
 
          imove = index( cmove, substring( cmoves, ix, 1 ) ).
@@ -219,20 +213,21 @@ class 15.two:
       define buffer bu for ttmap.
 
       var char cmap.
-      var int iy.
 
-      do iy = 0 to iheight:
+      for each bu break by bu.y:
 
-         cmap = fill( '.', iwidth ).
+         substring( cmap, bu.x + 1, 1 ) = bu.c.
 
-         if iy = iyrobot then
-            substring( cmap, ixrobot + 1, 1 ) = '@'.
+         if last-of( bu.y ) then do:
 
-         for each bu where bu.y = iy:
-            substring( cmap, bu.x + 1, 1 ) = bu.c.
+            if bu.y = iyrobot then
+               substring( cmap, ixrobot + 1, 1 ) = '@'.
+
+            put unformatted cmap skip.
+
+            cmap = ''.
+
          end.
-
-         put unformatted cmap skip.
 
       end.
 
