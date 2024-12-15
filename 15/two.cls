@@ -1,8 +1,8 @@
 class 15.two:
 
-   var int ixrobot, iyrobot.
+   var int ixrobot, iyrobot, iwidth.
 
-   define temp-table ttmap no-undo
+   define temp-table ttmap undo
       field x as int
       field y as int
       field c as char
@@ -15,13 +15,13 @@ class 15.two:
 
       session:appl-alert-boxes = true.
 
-      output to 'output.txt'.
+      output to '15/output.txt'.
 
-      moveRobot( readInput( '15/input.txt' ) ). // 1439676 = too high
+      moveRobot( readInput( '15/input.txt' ) ). // 1432781
 
       message calcSumGPS().
 
-      dumpMap().
+      dumpMap( '@' ).
 
       output close.
 
@@ -50,7 +50,9 @@ class 15.two:
 
          else do:
 
-            do ix = 1 to length( cline ):
+            iwidth = length( cline ).
+
+            do ix = 1 to iwidth:
 
                cc = substring( cline, ix, 1 ).
                if cc = '@' then
@@ -102,6 +104,8 @@ class 15.two:
       imoves = length( cmoves ).
       do ix = 1 to imoves:
 
+         // dumpMap( substring( cmoves, ix, 1 ) ).
+
          imove = index( cmove, substring( cmoves, ix, 1 ) ).
          if moveRobot( dx[imove], dy[imove] ) then
             assign
@@ -137,8 +141,14 @@ class 15.two:
       if i_dx <> 0 then
          return pushHorizontal( i_x, i_y, i_dx ).
 
-      if i_dy <> 0 then
-         return pushVertical( i_x, i_y, i_dy ).
+      if i_dy <> 0 then do transaction:
+
+         if pushVertical( i_x, i_y, i_dy ) then
+            return true.
+
+         undo, return false.
+
+      end.
 
    end method.
 
@@ -208,7 +218,7 @@ class 15.two:
 
    end method.
 
-   method void dumpMap ():
+   method void dumpMap ( cdir as char ):
 
       define buffer bu for ttmap.
 
@@ -216,16 +226,17 @@ class 15.two:
 
       for each bu break by bu.y:
 
+         if first-of( bu.y ) then
+            cmap = fill( '.', iwidth * 2 ).
+
          substring( cmap, bu.x + 1, 1 ) = bu.c.
 
          if last-of( bu.y ) then do:
 
             if bu.y = iyrobot then
-               substring( cmap, ixrobot + 1, 1 ) = '@'.
+               substring( cmap, ixrobot + 1, 1 ) = cdir.
 
             put unformatted cmap skip.
-
-            cmap = ''.
 
          end.
 
