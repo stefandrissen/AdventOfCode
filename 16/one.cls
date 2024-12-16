@@ -9,9 +9,14 @@ class 16.one:
 
       session:appl-alert-boxes = true.
 
-      output to '16/output.txt'.
+      output to '16/output.txt' unbuffered.
 
       readInput( '16/input.txt', output xs, output ys ).
+
+      fillDeadEnds().
+
+      dumpMap( xs, ys, 1, 0 ).
+
       iscore = walkMaze( 0, xs, ys, 1, '' ).
 
       dumpMap( xs, ys, 1, iscore ).
@@ -113,6 +118,49 @@ class 16.one:
 
    end method.
 
+   method void fillDeadEnds ():
+
+      var logical lupdated = true.
+      var int ix, iy.
+
+      do while lupdated:
+
+         lupdated = false.
+
+         do iy = 2 to extent( cmap ) - 1:
+
+            do ix = 2 to length( cmap [iy] ) - 1:
+
+               if       substring( cmap [iy], ix, 1 ) = '.'
+                  and   isDeadEnd( ix, iy )
+               then
+                  assign
+                     substring( cmap [iy], ix, 1 ) = '#'
+                     lupdated = true
+                     .
+
+            end.
+
+         end.
+
+      end.
+
+   end method.
+
+   method logical isDeadEnd( x as int, y as int ):
+
+      var int iwalls.
+
+      assign
+         iwalls += 1 when substring( cmap [y - 1], x    , 1 ) = '#'
+         iwalls += 1 when substring( cmap [y    ], x + 1, 1 ) = '#'
+         iwalls += 1 when substring( cmap [y + 1], x    , 1 ) = '#'
+         iwalls += 1 when substring( cmap [y    ], x - 1, 1 ) = '#'
+         .
+
+      return iwalls >= 3.
+
+   end method.
 
    method void dumpMap ( xs as int, ys as int, idir as int, iscore as int ):
 
