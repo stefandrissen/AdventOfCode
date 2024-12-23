@@ -6,13 +6,7 @@ class 22.one:
       var int isecret.
       var char csecret.
 
-      input from value(
-         substitute(
-            '&1/&2.txt':u,
-            entry( 1, this-object:ToString(), '.' ),
-            cfile
-         )
-      ).
+      input from value( cfile ).
 
       repeat:
 
