@@ -1,0 +1,17 @@
+{
+  "name": "AOC2025",
+  "version": "1.0",
+  "oeversion": "12.8",
+  "graphicalMode": false,
+  "charset": "utf-8",
+  "buildPath": [
+    // Entries can have type 'source' or 'propath'. Path attribute is mandatory. Build attribute is optional (defaults to 'path'). Xref attribute is optional (defaults to 'build/.pct' or '.builder/srcX')
+    // Source directories must be subdirectories of the project root directory. Relative paths are highly recommended.
+    { "type": "source", "path": "." },
+    { "type": "propath", "path": "${DLC}/tty/netlib/OpenEdge.net.pl", "documentation": "openedge.json" }
+  ],
+  "buildDirectory": "build", // Optional global build directory  
+  "numThreads": 1, // Number of OpenEdge sessions handling build
+  
+  "profiles": [ /* See section below */ ]
+}
