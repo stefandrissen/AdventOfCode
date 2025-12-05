@@ -4,12 +4,12 @@ class puzzle:
 
    constructor puzzle ():
 
-      var one o.
+      var two o.
 
       output to 'output.txt'.
 
-      o = new one().
-      o:solve( entry( 1, o:ToString(), '.' ) + '/input.txt' ).
+      o = new two().
+      o:solve( entry( 1, o:ToString(), '.' ) + '/example.txt' ).
 
       output close.
 

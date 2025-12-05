@@ -1,0 +1,15 @@
+# puzzle input
+
+**/*.txt
+
+# IDEs
+*/.settings/*
+*/.sonarlint/*
+profiler/
+debugger.pref
+
+*/.builder/*
+**/*.r
+.project
+.propath
+build.config

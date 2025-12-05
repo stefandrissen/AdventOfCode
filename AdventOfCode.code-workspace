@@ -1,0 +1,23 @@
+{
+	"folders": [
+		{
+			"path": "2024"
+		},
+		{
+			"path": "2025"
+		}
+	],
+	"settings": {
+		"xmlTools.enforcePrettySelfClosingTagOnFormat": true,
+		"xmlTools.splitXmlnsOnFormat": false,
+		"abl.configuration.defaultRuntime": "12.8",
+		"abl.configuration.runtimes": [
+			{
+				"name": "12.8",
+				"path": "C:\\Progress\\oe12.8"
+			}
+		],
+		"files.trimTrailingWhitespace": true,
+		"editor.wordBasedSuggestions": "off"
+	}
+}
