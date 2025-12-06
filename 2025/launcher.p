@@ -1,7 +1,7 @@
 &scoped year    2025
 &scoped day     06
-&scoped part    1
-&scoped example true
+&scoped part    2
+&scoped example false
 
 var {&day}.part{&part} o.
 var datetime dt = now.
