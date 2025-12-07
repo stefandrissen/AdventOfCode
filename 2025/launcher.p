@@ -1,5 +1,5 @@
 &scoped year    2025
-&scoped day     06
+&scoped day     07
 &scoped part    2
 &scoped example false
 
