@@ -1,6 +1,6 @@
 &scoped year    2025
-&scoped day     07
-&scoped part    2
+&scoped day     08
+&scoped part    1
 &scoped example false
 
 var {&day}.part{&part} o.
